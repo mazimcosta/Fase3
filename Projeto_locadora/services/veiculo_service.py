@@ -2,6 +2,7 @@
 
 from models.veiculo import Veiculo
 from repositories.veiculo_repository import VeiculoRepository
+import sqlite3
 
 class VeiculoService:
 
@@ -24,9 +25,7 @@ class VeiculoService:
     
 
     def cadastrar_veiculo(self,veiculo:Veiculo):
-        veiculo_existe=self.__repositorio.buscar_por_id(veiculo.id)
-        if veiculo_existe is not None:
-            raise ValueError('Veiculo ja cadastrado')
+        
         self.__repositorio.cadastrar_veiculo(veiculo)
 
     def alugar_veiculo(self,id:int,disponivel:int):

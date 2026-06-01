@@ -2,7 +2,7 @@ import sqlite3
 from models.veiculo import Veiculo
 class VeiculoRepository:
 
-    def __init__(self,caminho_arquivo='data/veiculos.db'):
+    def __init__(self,caminho_arquivo='Projeto_locadora//data//veiculos.db'):
         self.caminho_arquivo=caminho_arquivo
 
     def conectar(self):

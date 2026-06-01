@@ -1,64 +1,21 @@
-🚗 Locadora de Veículos
+# 🚗 Sistema de Locadora de Veículos
 
-Projeto desenvolvido durante minha formação em Backend Python com o objetivo de praticar conceitos de programação orientada a objetos, banco de dados SQLite e arquitetura em camadas.
+Projeto desenvolvido durante minha formação em Backend Python com o objetivo de praticar arquitetura em camadas, Programação Orientada a Objetos, SQL e persistência de dados utilizando SQLite.
 
-📚 Objetivos do Projeto
+## 📚 Objetivos
 
-- Praticar SQL e SQLite
-- Aplicar arquitetura em camadas
-- Trabalhar com Repository Pattern
-- Implementar regras de negócio em Service
-- Simular um sistema real de locadora de veículos
+* Consolidar conceitos de POO
+* Praticar SQL na aplicação
+* Implementar arquitetura em camadas
+* Aplicar Repository Pattern
+* Separar regras de negócio da persistência
+* Simular um sistema real de locadora de veículos
 
-🏗️ Estrutura do Projeto
+---
 
-Projeto_locadora/
-│
-├── data/
-│   └── locadora.db
-│
-├── models/
-│   └── veiculo.py
-│
-├── repository/
-│   └── veiculo_repository.py
-│
-├── service/
-│   └── veiculo_service.py
-│
-└── main.py
+## 🏗️ Arquitetura
 
-🚘 Funcionalidades
-
-- Cadastrar veículo
-- Listar veículos
-- Buscar veículo por ID
-- Atualizar disponibilidade do veículo
-- Remover veículo
-- Alugar veículo
-- Devolver veículo
-
-🗄️ Banco de Dados
-
-O projeto utiliza SQLite para armazenamento local dos dados.
-
-Tabela principal:
-
-CREATE TABLE veiculos(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    modelo TEXT NOT NULL,
-    marca TEXT NOT NULL,
-    ano INTEGER,
-    disponivel INTEGER NOT NULL
-);
-
-Disponibilidade
-
-1 = Disponível
-0 = Alugado
-
-🔄 Fluxo da Aplicação
-
+```text
 Main
  ↓
 Service
@@ -66,50 +23,194 @@ Service
 Repository
  ↓
 SQLite
+```
 
-Responsabilidades
+### Responsabilidades
 
-Repository
+#### Service
 
-- Comunicação com o banco de dados
-- Consultas SQL
-- Inserção, busca, atualização e remoção de registros
+* Regras de negócio
+* Validações
+* Controle de aluguel e devolução
+* Tratamento de erros da aplicação
 
-Service
+#### Repository
 
-- Regras de negócio
-- Validações
-- Controle de aluguel e devolução
+* Comunicação com banco de dados
+* Consultas SQL
+* Inserção de registros
+* Atualização de registros
+* Remoção de registros
 
-🛠️ Tecnologias Utilizadas
+#### SQLite
 
-- Python
-- SQLite
-- SQL
-- Git
-- GitHub
+* Persistência dos dados
 
-🎯 Aprendizados
+---
 
-Durante o desenvolvimento deste projeto foram praticados conceitos como:
+## 📂 Estrutura do Projeto
 
-- CRUD completo
-- SQL parametrizado
-- fetchone() e fetchall()
-- Separação de responsabilidades
-- Arquitetura em camadas
-- Modelagem de dados
-- Repository Pattern
+```text
+Projeto_locadora/
+│
+├── data/
+│   └── veiculos.db
+│
+├── models/
+│   └── veiculo.py
+│
+├── repositories/
+│   └── veiculo_repository.py
+│
+├── services/
+│   └── veiculo_service.py
+│
+├── main.py
+│
+└── README.md
+```
 
-🚀 Próximos Passos
+---
 
-- Adicionar FastAPI
-- Criar endpoints REST
-- Migrar para PostgreSQL
-- Implementar testes automatizados
-- Adicionar Docker
-- Realizar deploy da aplicação
+## 🚘 Funcionalidades Implementadas
 
-👨‍💻 Autor
+### Veículos
 
-Projeto desenvolvido como parte da jornada de estudos em Backend Python.
+* ✅ Cadastrar veículo
+* ✅ Buscar veículo por ID
+* ✅ Listar veículos
+* ✅ Remover veículo
+* ✅ Atualizar disponibilidade
+
+### Locação
+
+* ✅ Alugar veículo
+* ✅ Devolver veículo
+* ✅ Validação de veículo inexistente
+* ✅ Controle de disponibilidade
+
+---
+
+## 🗄️ Banco de Dados
+
+Tabela principal:
+
+```sql
+CREATE TABLE veiculos(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    modelo TEXT NOT NULL,
+    marca TEXT NOT NULL,
+    ano INTEGER NOT NULL,
+    disponivel INTEGER NOT NULL
+);
+```
+
+### Disponibilidade
+
+```text
+1 = Disponível
+0 = Alugado
+```
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+* Python 3
+* SQLite
+* SQL
+* Git
+* GitHub
+
+---
+
+## 🎯 Conceitos Praticados
+
+* Programação Orientada a Objetos
+* Encapsulamento
+* Repository Pattern
+* Arquitetura em Camadas
+* CRUD Completo
+* SQL Parametrizado
+* SQLite
+* Regras de Negócio
+* Tratamento de Exceções
+* Separação de Responsabilidades
+
+---
+
+## 🧪 Fluxos Testados
+
+### Cadastro de veículo
+
+```text
+Cadastrar veículo
+↓
+Persistir no SQLite
+↓
+Retornar sucesso
+```
+
+### Aluguel
+
+```text
+Buscar veículo
+↓
+Verificar disponibilidade
+↓
+Atualizar para indisponível
+```
+
+### Devolução
+
+```text
+Buscar veículo
+↓
+Atualizar para disponível
+```
+
+### Veículo inexistente
+
+```text
+Buscar veículo
+↓
+ValueError
+```
+
+---
+
+## 🚀 Próximas Evoluções
+
+* [ ] Criar sistema de clientes
+* [ ] Criar sistema de reservas
+* [ ] Relacionamento entre entidades
+* [ ] Migrar SQLite → PostgreSQL
+* [ ] Criar API com FastAPI
+* [ ] Implementar testes automatizados
+* [ ] Dockerizar aplicação
+* [ ] Deploy
+
+---
+
+## 👨‍💻 Autor
+
+Projeto desenvolvido como parte da minha jornada de formação em Backend Python e Engenharia de Software.
+
+---
+
+## 📈 Status do Projeto
+
+✅ Concluído (Versão SQLite)
+
+Este projeto representa a conclusão do primeiro mini-boss da Fase 3 da formação Backend Python, consolidando:
+
+* Arquitetura em camadas
+* Repository Pattern
+* SQLite
+* SQL aplicado
+* CRUD completo
+* Regras de negócio
+* Tratamento de erros
+* Organização de projeto profissional
+
+Próxima etapa: Sistema de Reserva de Quartos utilizando SQLite e relacionamentos entre entidades.
